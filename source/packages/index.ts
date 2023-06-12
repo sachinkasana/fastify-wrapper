@@ -8,6 +8,7 @@ import {
   FastifyReply,
   FastifyRequest,
 } from 'fastify';
+import { pino } from 'pino';
 import FastifyFormBody from '@fastify/formbody';
 import error from './errors/index';
 
@@ -24,7 +25,8 @@ export type AppOptions = {
 
 // Pass --options via CLI arguments in command to enable these options.
 const options: AppOptions = {};
-const customFastiFy = fastify({logger:true});
+const customFastiFy = fastify();
+const logger= pino({});
 const customFastifyApp: FastifyPluginAsync<AppOptions> = async (
   fastify: FastifyInstance,
   opts: FastifyPluginOptions,
@@ -81,4 +83,4 @@ const customFastifyApp: FastifyPluginAsync<AppOptions> = async (
 };
 
 export default customFastiFy;
-export { customFastifyApp, options };
+export { customFastifyApp, options,logger };

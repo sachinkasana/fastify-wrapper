@@ -1,6 +1,6 @@
 {
   "name": "sachinkasana-fastify",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -20,7 +20,10 @@
     "type": "git",
     "url": "git+https://github.com/sachinkasana/fastify-wrapper.git"
   },
-  "keywords": ["fastify","framework"],
+  "keywords": [
+    "fastify",
+    "framework"
+  ],
   "author": "sachin kasana",
   "license": "ISC",
   "bugs": {
@@ -40,9 +43,10 @@
     "@fastify/formbody": "^7.4.0",
     "dotenv": "^16.1.4",
     "fastify": "^4.18.0",
-    "fastify-healthcheck": "^4.4.0"
+    "fastify-healthcheck": "^4.4.0",
+    "pino": "^8.14.1"
   },
-    "files": [
-        "lib/**/*"
-      ]
+  "files": [
+    "lib/**/*"
+  ]
 }
