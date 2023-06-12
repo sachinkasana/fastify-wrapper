@@ -24,7 +24,7 @@ export type AppOptions = {
 
 // Pass --options via CLI arguments in command to enable these options.
 const options: AppOptions = {};
-const customFastiFy = fastify;
+const customFastiFy = fastify({logger:true});
 const customFastifyApp: FastifyPluginAsync<AppOptions> = async (
   fastify: FastifyInstance,
   opts: FastifyPluginOptions,
