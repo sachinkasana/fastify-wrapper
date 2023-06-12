@@ -1,0 +1,6 @@
+# Ignore artifacts:
+dist
+coverage
+.nyc_output
+.eslintrc.json
+.prettier.json
