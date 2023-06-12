@@ -14,7 +14,12 @@
     "start:server": "npm run build:ts && node dist/server.js",
     "build": "npm run build:ts",
     "build:ts": "tsc",
-    "watch:ts": "tsc -w"
+    "watch:ts": "tsc -w",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
