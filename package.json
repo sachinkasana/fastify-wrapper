@@ -10,15 +10,15 @@
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier --write \"source/**/*.ts\"",
     "format:write": "prettier --write .",
-    "start": "npm run build:ts && fastify start -l info dist/app.js",
-    "start:server": "npm run build:ts && node dist/server.js",
+    "start": "npm run build:ts && fastify start -l info lib/app.js",
+    "start:server": "npm run build:ts && node lin/server.js",
     "build": "npm run build:ts",
     "build:ts": "tsc",
     "watch:ts": "tsc -w",
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint",
-    "version": "npm run format && git add -A src",
+    "version": "npm run format && git add -A source",
     "postversion": "git push && git push --tags"
   },
   "repository": {
