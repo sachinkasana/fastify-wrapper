@@ -3,7 +3,7 @@ import fp from "fastify-plugin";
 import App,{customFastifyApp} from "../packages/index";
 
 export function build() {
-  const app = App;
+  const app = App();
 
   beforeAll(async () => {
     void app.register(fp(customFastifyApp));
