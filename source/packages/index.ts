@@ -1,13 +1,13 @@
 import { join } from 'path';
 import AutoLoad, { AutoloadPluginOptions } from '@fastify/autoload';
 import {
-  fastify,
   FastifyInstance,
   FastifyPluginOptions,
   FastifyPluginAsync,
   FastifyReply,
   FastifyRequest,
 } from 'fastify';
+import Fastify from 'fastify';
 import { pino } from 'pino';
 import FastifyFormBody from '@fastify/formbody';
 import error from './errors/index';
@@ -25,7 +25,7 @@ export type AppOptions = {
 
 // Pass --options via CLI arguments in command to enable these options.
 const options: AppOptions = {};
-const customFastiFy = fastify();
+const customFastiFy = Fastify;
 const logger = pino({});
 const customFastifyApp: FastifyPluginAsync<AppOptions> = async (
   fastify: FastifyInstance,
@@ -38,25 +38,18 @@ const customFastifyApp: FastifyPluginAsync<AppOptions> = async (
   // This loads all plugins defined in plugins
   // those should be support plugins that are reused
   // through your application
-  fastify
-    .register(AutoLoad, {
-      dir: join(__dirname, 'plugins'),
-      options: opts,
-    })
-    .ready((err) => {
-      fastify.loadConfig();
-    });
-
-  fastify.register(FastifyFormBody); // To parse 'application/x-www-form-urlencoded' content-type
+  void fastify.register(AutoLoad, {
+    dir: join(__dirname, 'plugins'),
+    options: opts
+  })
 
   // This loads all plugins defined in routes
   // define your routes in one of these
-  fastify.register(AutoLoad, {
+  void fastify.register(AutoLoad, {
     dir: join(__dirname, 'routes'),
-    options: Object.assign({ prefix: `/${process.env.PROJECT_KEY}` }, opts),
-  });
-
-  fastify.register(fastifyHealthcheck, { prefix: `/${process.env.PROJECT_KEY}/actuator` });
+    options: opts
+  })
+  fastify.register(FastifyFormBody); // To parse 'application/x-www-form-urlencoded' content-type
   fastify.setNotFoundHandler((request: FastifyRequest, reply: FastifyReply) => {
     fastify.log.debug(`Route not found: ${request.method}:${request.raw.url}`);
 
