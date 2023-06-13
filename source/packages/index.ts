@@ -8,7 +8,6 @@ import {
   FastifyRequest,
 } from 'fastify';
 import Fastify from 'fastify';
-import { pino } from 'pino';
 import FastifyFormBody from '@fastify/formbody';
 import error from './errors/index';
 
